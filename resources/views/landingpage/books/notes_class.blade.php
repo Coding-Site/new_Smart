@@ -52,7 +52,15 @@
                                 </form>
                             @endif
 
+<<<<<<< HEAD
+                            <a class="btn btn-dark my-4 mx-auto  fw-bold"
+=======
+<<<<<<< HEAD
                             <a class="btn btn-danger my-4 mx-auto  fw-bold"
+=======
+                            <a class="btn btn-dark my-4 mx-auto  fw-bold"
+>>>>>>> origin/islam
+>>>>>>> origin/main
                                 href="{{ route('pdfBookFree', $book->pdf) }}">عينة المذكرة
                                 <i class="fa-solid fa-download ms-2"></i></a>
                         </div>

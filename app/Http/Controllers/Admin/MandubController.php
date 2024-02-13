@@ -189,20 +189,44 @@ class MandubController extends Controller
     public function createStation(Request $request, int $mandubId)
     {
         $mandub = User::findOrFail($mandubId);
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/islam
+>>>>>>> origin/main
         $selectedBooks = $request->input('selected_subjects');
         if (!$selectedBooks) {
             toastr()->error('لا يوجد مذكرات');
             return back();
         }
         $mandub_target = $request->mandub_target;
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/islam
+>>>>>>> origin/main
         foreach ($selectedBooks as $bookId) {
             $mandubBook = $mandub->mandubBooks()->where('book_id', $bookId)->first();
             $book = Book::findOrFail($bookId);
             $targetValue = ($mandub_target ?? 0);
             $stationValue = $targetValue - ($mandubBook->pivot->mandub_quantity ?? 0);
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/islam
+>>>>>>> origin/main
             MandubBook::updateOrCreate(
                 ['book_id' => $bookId, 'mandub_id' => $mandubId],
                 [
@@ -212,16 +236,36 @@ class MandubController extends Controller
                     'mandub_active' => 0,
                 ]
             );
+<<<<<<< HEAD
+    
+            $newQuantityData = $book->quantity - $stationValue;
+    
+=======
+<<<<<<< HEAD
 
             $newQuantityData = $book->quantity - $stationValue;
 
+=======
+    
+            $newQuantityData = $book->quantity - $stationValue;
+    
+>>>>>>> origin/islam
+>>>>>>> origin/main
             if ($newQuantityData > 0) {
                 $book->update([
                     'quantity' => $newQuantityData
                 ]);
             } elseif ($newQuantityData <= 0) {
                 $book_target = TargetBook::where('book_id', $book->id)->first();
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/islam
+>>>>>>> origin/main
                 if ($book_target) {
                     $book_target->update([
                         'print' =>  - $book->quantity  + $stationValue ,
@@ -234,18 +278,37 @@ class MandubController extends Controller
                         'target' => -$book->quantity + $stationValue ,
                     ]);
                 }
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/islam
+>>>>>>> origin/main
                 $book->update([
                     'quantity' => 0
                 ]);
             }
         }
+<<<<<<< HEAD
+    
+=======
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/islam
+>>>>>>> origin/main
         toastr()->success('تم حفظ البيانات بنجاح');
         return back();
     }
     public function finishStation(Request $request)
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
         // return $request;
         $count = 0;
         foreach($request->book as $book){
@@ -310,12 +373,53 @@ class MandubController extends Controller
         // }
         // toastr()->success('تم حفظ البيانات بنجاح');
         // return back();
+=======
+>>>>>>> origin/main
+        $selectedBooks = $request->input('selected_subjects');
+        if (!$selectedBooks) {
+            toastr()->error('لا يوجد مذكرات');
+            return back();
+        }
+        foreach ($selectedBooks as $bookId) {
+            $book = MandubBook::where('book_id', $bookId)->first();
+            if (!$book) {
+                toastr()->success(' يجب اضافة مستهدف لجميع الكتب المحدده');
+                return back();
+            }
+            $newquantity = $book->station + $book->mandub_quantity;
+            $station = max(0, $book->mandub_target - $newquantity);
+    
+            MandubBook::where('book_id', $bookId)->update([
+                'mandub_quantity' => $newquantity,
+                'station' => $station,
+            ]);
+            if ($station == 0) {
+                MandubBook::where('book_id', $bookId)->update([
+                    'mandub_active' => 1,
+                    'distributor_active' => 1,
+                ]);
+            }
+        }
+        toastr()->success('تم حفظ البيانات بنجاح');
+        return back();
+<<<<<<< HEAD
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
     }
     public function updateStationQuantity(Request $request, $book, $mandub)
     {
         try {
             $stationQuantity = $request->station_quantity;
+<<<<<<< HEAD
+            $book = MandubBook::where('book_id', $book)->where('mandub_id',$mandub)->first();    
+=======
+<<<<<<< HEAD
             $book = MandubBook::where('book_id', $book)->where('mandub_id',$mandub)->first();
+=======
+            $book = MandubBook::where('book_id', $book)->where('mandub_id',$mandub)->first();    
+>>>>>>> origin/islam
+>>>>>>> origin/main
             if (!$book) {
                 return response()->json(['message' => 'الكتاب غير موجود.'], 404);
             }
@@ -352,7 +456,15 @@ class MandubController extends Controller
         }
     }
         toastr()->success( ' تم تحصيل جميع الطلبات للمندوب');
+<<<<<<< HEAD
+        return back();    
+=======
+<<<<<<< HEAD
         return back();
+=======
+        return back();    
+>>>>>>> origin/islam
+>>>>>>> origin/main
     }
 
 }

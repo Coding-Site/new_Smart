@@ -23,7 +23,15 @@ class Book extends Model
     }
     public function target()
     {
+<<<<<<< HEAD
+       return $this->belongsTo(TargetBook::class, 'id', 'book_id');
+=======
+<<<<<<< HEAD
         return $this->belongsTo(TargetBook::class, 'id', 'book_id');
+=======
+       return $this->belongsTo(TargetBook::class, 'id', 'book_id');
+>>>>>>> origin/islam
+>>>>>>> origin/main
     }
     public function mandubBooks()
     {

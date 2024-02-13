@@ -55,7 +55,15 @@ return [
     |
     */
 
+<<<<<<< HEAD
+    'url' => env('APP_URL', 'http://localhost'),
+=======
+<<<<<<< HEAD
     'url' => env('APP_URL', 'https://localhost'),
+=======
+    'url' => env('APP_URL', 'http://localhost'),
+>>>>>>> origin/islam
+>>>>>>> origin/main
 
     'asset_url' => env('ASSET_URL'),
 
@@ -184,7 +192,15 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class,
+<<<<<<< HEAD
+        'JWTAuth'=>Tymon\JWTAuth\facades\JWTAuth::class,   
+=======
+<<<<<<< HEAD
         'JWTAuth'=>Tymon\JWTAuth\facades\JWTAuth::class,
+=======
+        'JWTAuth'=>Tymon\JWTAuth\facades\JWTAuth::class,   
+>>>>>>> origin/islam
+>>>>>>> origin/main
 	'JWTAuthFactory'=>Tymon\JWTAuth\facades\JWTAuthFactory::class,
 
     ])->toArray(),

@@ -14,6 +14,9 @@ class StudentController extends Controller
 
     public function index()
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
         $students = user::select('*', DB::raw("DATE_FORMAT(created_at, '%d/ %m/ 20%y') as date"))->where('user_type', 'user')->get();
         $studentCount = User::where('user_type', 'user')->count();
     
@@ -21,6 +24,21 @@ class StudentController extends Controller
 
         
     }
+=======
+>>>>>>> origin/main
+        $students = User::select('*', DB::raw("DATE_FORMAT(created_at, '%d/ %m/ 20%y') as date"))->where('user_type', 'user')->get();
+        $studentCount = User::where('user_type', 'user')->count();
+        $totalSub = DB::table('user_courses')
+            ->select(DB::raw('COUNT(DISTINCT user_id) as total_unique_users_count'))
+            ->value('total_unique_users_count'); // استخدم value() بدلاً من first()
+    
+        return view('admin.student', compact(['students', 'studentCount','totalSub']));
+    }
+    
+<<<<<<< HEAD
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
     public function update(StudentEditRequest $request, int $student)
     {
 
@@ -52,4 +70,19 @@ class StudentController extends Controller
         toastr()->success('تم حفظ البيانات بنجاح');
         return back();
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> origin/main
+    public function deleteStudentNotSub(int $student){
+        $studentData=User::where('id',$student)->first();
+        $studentData->delete();
+        toastr()->success('تم حذف الطالب بنجاح');
+        return back();
+    }
+<<<<<<< HEAD
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
 }
