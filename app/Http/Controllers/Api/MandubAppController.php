@@ -225,7 +225,7 @@ class MandubAppController extends Controller
             'address' => $request->address,
             'city_id' => $city,
             'price_all' => $request->price_all,
-            'status' => 'current',
+            'status' => 'complete',
             'mandub_id' => $mandub
         ]);
         foreach ($items as $item) {
@@ -316,16 +316,16 @@ class MandubAppController extends Controller
     //     }
     //     return response()->json(['message' => 'تم تحديث الكميات بنجاح']);
     // }
-    
+
     public function updateQuantity(Request $request, $mandub)
     {
         $updates = $request->input('updates');
-    
+
         foreach ($updates as $update) {
             $id = $update['id'];
             $quantityToUpdate = $update['quantity'];
             $mandubBook = MandubBook::where('mandub_id', $mandub)->where('book_id', $id)->first();
-    
+
             if ($mandubBook) {
                 $newQuantity = $mandubBook->mandub_quantity - $quantityToUpdate;
                 $updateData = [
@@ -334,7 +334,7 @@ class MandubAppController extends Controller
                     'mandub_active' => 0,
                     'distributor_active' => 0
                 ];
-    
+
                 if ($newQuantity < 0) {
                     if ($mandubBook->station < $mandubBook->mandub_target) {
                         $updateData['station'] += $quantityToUpdate + $mandubBook->mandub_target;
@@ -345,7 +345,7 @@ class MandubAppController extends Controller
                     // تحديث station عندما يكون mandub_quantity يساوي 0
                     $updateData['station'] = $mandubBook->mandub_target;
                 }
-    
+
                 $mandubBook->update($updateData);
             } else {
                 $mandubBook = MandubBook::create([
@@ -356,16 +356,16 @@ class MandubAppController extends Controller
                     'mandub_active' => 0,
                     'distributor_active' => 0,
                 ]);
-    
+
                 $mandubBook->update([
                     'station' => 2 * $quantityToUpdate,
                 ]);
             }
         }
-    
+
         return response()->json(['message' => 'تم تحديث الكميات بنجاح']);
     }
-    
-    
-    
+
+
+
 }
