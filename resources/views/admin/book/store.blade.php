@@ -219,9 +219,13 @@ $name = request()->route('name');
                     <div class="modal-body">
                         <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد </h5>
 <<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
 =======
 
 >>>>>>> origin/islam
+>>>>>>> origin/main
                         <table class="table">
                             <thead>
                                 <tr>
@@ -232,6 +236,8 @@ $name = request()->route('name');
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
                                 @php
                                     $i = 0;
@@ -245,23 +251,30 @@ $name = request()->route('name');
                                         <label class="form-check">
                                             <input type="checkbox" name="book[{{ $i }}][selected_subjects]"  value="1" class="form-check-input">
 =======
+>>>>>>> origin/main
                                 @forelse($books as $book)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
                                         <label class="form-check">
                                             <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input">
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                         </label>
                                     </td>
                                     <td>{{ $book->name }}</td>
                                     <td>
                                         @if($book->target)
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
                                             <input type="number" name="book[{{ $i++ }}][print_quantity]" id="inputPrintQuantity_{{ $book->id }}" value="{{ $book->target->target-$book->quantity }}" class="form-control">
                                         @else
                                         <input type="number" name="book[{{ $i++ }}][print_quantity]" id="inputPrintQuantity_{{ $book->id }}" value="0" class="form-control">
 =======
+>>>>>>> origin/main
                                         <form id="quantityForm" action="{{ route('updatePrintQuantity', $book->id) }}" method="post">
                                             @csrf
                                             <input type="number" name="print_quantity[]" id="inputPrintQuantity_{{ $book->id }}" value="{{  $book->target->print }}" class="form-control" oninput="updatePrintQuantity(this)">
@@ -269,7 +282,10 @@ $name = request()->route('name');
 
                                         @else
                                         <input type="number" name="print_quantity[]" id="inputPrintQuantity_{{ $book->id }}" value="0" class="form-control">
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                         @endif
                                     </td>
 
@@ -302,10 +318,13 @@ $name = request()->route('name');
         var bookId = input.id.replace('inputPrintQuantity_', '');
         var newPrintQuantity = input.value;
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         $("#"+bookId).hide();
 
 =======
 >>>>>>> origin/islam
+>>>>>>> origin/main
 
         // التحقق من أن القيمة المحددة أقل من أو تساوي target قبل إرسال الطلب
         if (newPrintQuantity <= '{{ $book->target }}') {
@@ -326,10 +345,13 @@ $name = request()->route('name');
                 error: function(error) {
                     console.error('حدث خطأ: ', error);
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
                     input.parentElement.innerHTML += "<span class='text-danger' id='"+bookId+"'>"+error.responseJSON.message+"</span>"
 
 =======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                 }
             });
         } else {
@@ -340,10 +362,14 @@ $name = request()->route('name');
 
 
 <<<<<<< HEAD
+              
+=======
+<<<<<<< HEAD
 
 =======
               
 >>>>>>> origin/islam
+>>>>>>> origin/main
             </div>
         </div>
     </div>
@@ -398,11 +424,15 @@ $name = request()->route('name');
                                     <td>
                                         @if($book->target)
 <<<<<<< HEAD
+                                        {{$book->target->print}}
+=======
+<<<<<<< HEAD
                                         {{-- {{$book->target->print}} --}}
                                         {{ $book->target->target-$book->quantity }}
 =======
                                         {{$book->target->print}}
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                         @else
                                         0 @endif
                                     </td>
@@ -515,5 +545,9 @@ $name = request()->route('name');
 <<<<<<< HEAD
     @endsection
 =======
+<<<<<<< HEAD
+    @endsection
+=======
     @endsection
 >>>>>>> origin/islam
+>>>>>>> origin/main

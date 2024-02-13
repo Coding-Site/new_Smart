@@ -68,19 +68,26 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::post('/student/edit/{student}', [StudentController::class, 'update'])->name('updateStudent');
   Route::post('/student/updateStudent/{student}', [StudentController::class, 'updateGroup'])->name('updateGroupStudent');
 <<<<<<< HEAD
+  Route::post('/student/delete/Student/Not/Sub/{student}', [StudentController::class, 'deleteStudentNotSub'])->name('deleteStudentNotSub');
+=======
+<<<<<<< HEAD
 
 =======
   Route::post('/student/delete/Student/Not/Sub/{student}', [StudentController::class, 'deleteStudentNotSub'])->name('deleteStudentNotSub');
 >>>>>>> origin/islam
+>>>>>>> origin/main
   //teacher->admin
   Route::get('/teacher', [TeacherController::class, 'index'])->name('getTeacher');
   Route::post('/teacher', [TeacherController::class, 'store'])->name('postTeacher');
   Route::post('/teacher/edit/{teacher}', [TeacherController::class, 'update'])->name('updateTeacher');
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> origin/islam
+>>>>>>> origin/main
   //dashboard
   Route::get('/', [HomeController::class, 'index'])->name('dashboard');
   //exam->admin
@@ -112,6 +119,8 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::post('course/tutorial/edit/{id}', [CourseController::class, 'editTutorial'])->name('editTutorial');
   Route::get('course/tutorial/video/show/{tutorialId}', [CourseController::class, 'video'])->name('showTutorialVideo');
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
   // update Video Order using json Api
 
@@ -120,12 +129,16 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   // update Tutorial Order using json Api
 
 =======
+>>>>>>> origin/main
     // update Video Order using json Api
 
   Route::post('updateVideoOrder', [CourseController::class, 'updateVideoOrder'])->name('updateVideoOrder');
   
   // update Tutorial Order using json Api
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
   Route::post('updateTutorialOrder', [CourseController::class, 'updateTutorialOrder'])->name('updateTutorialOrder');
 
   Route::post('course/tutorial/video/post/{tutorialId}', [CourseController::class, 'createVideo'])->name('postTutorialVideo');
@@ -133,10 +146,14 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::post('course/tutorial/video/edit/{id}', [CourseController::class, 'editVideo'])->name('editTutorialVideo');
   Route::get('course/subscribes/', [CourseController::class, 'subscribesCourses'])->name('subscribesCourses');
 <<<<<<< HEAD
+  //package  
+=======
+<<<<<<< HEAD
   //package
 =======
   //package  
 >>>>>>> origin/islam
+>>>>>>> origin/main
   Route::get('package/show', [PackageController::class, 'index'])->name('showPackage');
   Route::get('package/archive/show', [PackageController::class, 'unActive'])->name('showPackageArchive');
   Route::post('package/post', [PackageController::class, 'create'])->name('postPackage');
@@ -150,10 +167,14 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::post('post/site/setting', [Sitesetteings::class, 'update'])->name('sitesettingsPost');
   //books
 <<<<<<< HEAD
+  //book->admin 
+=======
+<<<<<<< HEAD
   //book->admin
 =======
   //book->admin 
 >>>>>>> origin/islam
+>>>>>>> origin/main
   Route::get('/book', [BookController::class, 'index'])->name('getBook');
   Route::get('/book/add', [BookController::class, 'addBook'])->name('addBook');
   Route::post('/book/add', [BookController::class, 'store'])->name('postBook');
@@ -167,10 +188,14 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::get('/store/print/finishprint/done/{book}', [BookController::class, 'printBookFinish'])->name('printBookFinish');
   Route::post('/delete/Book/From/Store/{book}', [BookController::class, 'deleteBookFromStore'])->name('deleteBookFromStore');
 <<<<<<< HEAD
+  
+=======
+<<<<<<< HEAD
 
 =======
   
 >>>>>>> origin/islam
+>>>>>>> origin/main
     Route::get('/delete/quantity/books/Store', [BookController::class, 'deleteQuantityBookFromStore'])->name('deleteBookQuantityFromStore');
 
   //
@@ -193,11 +218,14 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::get('/mandub/book/update/mandub/active/{book}/{mandub}', [MandubController::class, 'updateMandubActive'])->name('updateMandubActive');
   Route::post('/store/station/{mandub}', [MandubController::class, 'createStation'])->name('postStation');
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   
     Route::get('/mandubOrderComplete/{mandubId}', [MandubController::class, 'mandubOrderComplete'])->name('mandubOrderComplete');
   Route::get('/ended/all/order/complete/for/mandub/{mandubId}', [MandubController::class, 'endedAllOrderCompleteForMandub'])->name('endedAllOrderCompleteForMandub');
   
 =======
+>>>>>>> origin/main
   Route::post('/finish/station/mandub/books', [MandubController::class, 'finishStation'])->name('finishStation');
   Route::post('/update_station_quantity/{bookId}/{mandubId}', [MandubController::class, 'updateStationQuantity'])->name('update_station_quantity');
 
@@ -205,7 +233,10 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::get('/mandubOrderComplete/{mandubId}', [MandubController::class, 'mandubOrderComplete'])->name('mandubOrderComplete');
   Route::get('/ended/all/order/complete/for/mandub/{mandubId}', [MandubController::class, 'endedAllOrderCompleteForMandub'])->name('endedAllOrderCompleteForMandub');
 
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
   //city->admin->book
   Route::get('/city', [CityController::class, 'index'])->name('getCity');
   Route::post('/city', [CityController::class, 'store'])->name('postCity');
@@ -214,11 +245,14 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::post('/city/mandoub/add/{city}', [CityController::class, 'addNewMandoub'])->name('addNewMandoub');
   Route::post('/city/mandoub/delete/{mandoub}', [CityController::class, 'mandoubCityDelete'])->name('mandoubCityDelete');
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   Route::post('/finish/station/mandub/books', [MandubController::class, 'finishStation'])->name('finishStation');
   Route::post('/update_station_quantity/{bookId}/{mandubId}', [MandubController::class, 'updateStationQuantity'])->name('update_station_quantity');
   
 =======
 >>>>>>> origin/islam
+>>>>>>> origin/main
   //package//book
   Route::get('/book/package', [BookController::class, 'allPackage'])->name('getPackage');
   Route::post('package/book/post', [BookController::class, 'create'])->name('postPackageBook');
@@ -289,16 +323,22 @@ route::group(['prefix' => 'landingpage'], function () {
   Route::post('cart/add/quantity/package/{cart}', [NotesController::class, 'postnewquantitybook'])->name('postnewquantitybook');
   Route::get('/delete/Cart/Books/Item/{cart}', [NotesController::class, 'deleteCartBooksItem'])->name('deleteCartBooksItem');
 <<<<<<< HEAD
+  Route::post('cart/order/done', [NotesController::class, 'neworderbook'])->name('postneworderbook');  
+=======
+<<<<<<< HEAD
   Route::post('cart/order/done', [NotesController::class, 'neworderbook'])->name('postneworderbook');
 =======
   Route::post('cart/order/done', [NotesController::class, 'neworderbook'])->name('postneworderbook');  
 >>>>>>> origin/islam
+>>>>>>> origin/main
 
   //subjest
   Route::get('/subjects/landingpage/stages', [LandingSubjectsController::class, 'index'])->name('getLandingSubjectsStage');
   Route::get('/subjects/middleSchool', [LandingSubjectsController::class, 'middleSchool'])->name('getMiddleSchoolSubjects');
   Route::get('/subjects/highSchool', [LandingSubjectsController::class, 'highSchool'])->name('getHighSchoolSubjects');
   Route::get('/subjects/courses/class/{name}', [LandingSubjectsController::class, 'getCoursesClassRoom'])->name('getCoursesClassRoom');
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
     Route::get('/subjects/courses/class/tutorial/free/video/{course}/{video}', [LandingSubjectsController::class, 'getSubjectTutorialsAndFreeVideos'])->name('getSubjectTutorialsAndFreeVideos');
 
@@ -307,9 +347,14 @@ route::group(['prefix' => 'landingpage'], function () {
 
 });
 =======
+>>>>>>> origin/main
   Route::get('/subjects/courses/class/tutorial/free/video/{course}/{video}', [LandingSubjectsController::class, 'getSubjectTutorialsAndFreeVideos'])->name('getSubjectTutorialsAndFreeVideos');
   Route::get('/filedownload/{file}', [StageController::class, 'download'])->name('fileDownload');
 
   
+<<<<<<< HEAD
+});
+=======
 });
 >>>>>>> origin/islam
+>>>>>>> origin/main

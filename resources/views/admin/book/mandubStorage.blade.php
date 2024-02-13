@@ -199,6 +199,9 @@ $name = request()->route('name');
                         </thead>
                         <tbody>
 <<<<<<< HEAD
+                            @forelse($books as $book)
+=======
+<<<<<<< HEAD
                             @php
                                 $i =0;
                             @endphp
@@ -208,21 +211,28 @@ $name = request()->route('name');
 =======
                             @forelse($books as $book)
 >>>>>>> origin/islam
+>>>>>>> origin/main
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>
                                     <label class="form-check">
 <<<<<<< HEAD
+                                        <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input">
+=======
+<<<<<<< HEAD
                                         <input type="checkbox" name="book[{{ $i }}][station_status]" value="1" class="form-check-input">
 =======
                                         <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input">
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                     </label>
                                 </td>
                                 <td>{{ $book->name }}</td>
                                 <td>
                                     @php
                                     $mandubBook = $book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first();
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
                                     $mandub_target = optional($book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first())->pivot->mandub_target ?? 0;
                                     $mandubBook = $book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first();
@@ -235,6 +245,7 @@ $name = request()->route('name');
                                     @else
                                     <input type="number" name="book[{{ $i++ }}][station_quantity]" id="inputStationQuantity_{{ $mandub->id }}" value="{{ $mandubStation }}" class="form-control">
 =======
+>>>>>>> origin/main
                                     $mandubStation = optional($mandubBook)->pivot->station ?? 0;
                                     @endphp
 
@@ -245,7 +256,10 @@ $name = request()->route('name');
                                     </form>
                                     @else
                                     <input type="number" name="station_quantity[]" id="inputStationQuantity_{{ $mandub->id }}" value="{{ $mandubStation }}" class="form-control">
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                     @endif
 
                                 </td>
@@ -333,9 +347,13 @@ $name = request()->route('name');
                                     <th>المستهدف</th>
                                     <th> توريد </th>
 <<<<<<< HEAD
+                                    <th> الموزع </th>
+=======
+<<<<<<< HEAD
 =======
                                     <th> الموزع </th>
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                     <th> المندوب </th>
                                     <th>الحد الادني</th>
                                     <th> العمليات</th>
@@ -362,11 +380,15 @@ $name = request()->route('name');
                                         $mandubBook = $book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first();
                                         $mandub_target = optional($book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first())->pivot->mandub_target ?? 0;
 <<<<<<< HEAD
+                                        $backgroundClass = $mandub_target < 2 ? 'bg-success' : 'bg-danger' ; @endphp <span class="{{ $backgroundClass }}" style="padding: 8px; border-radius: 3px; color: #fff;">
+=======
+<<<<<<< HEAD
                                         $backgroundClass = $mandub_target < 2 ? 'bg-success' : 'bg-danger' ; @endphp
                                          <span class="{{ $backgroundClass }}" style="padding: 8px; border-radius: 3px; color: #fff;">
 =======
                                         $backgroundClass = $mandub_target < 2 ? 'bg-success' : 'bg-danger' ; @endphp <span class="{{ $backgroundClass }}" style="padding: 8px; border-radius: 3px; color: #fff;">
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                             {{ $mandub_target }}
                                     </th>
                                     <th>
@@ -374,10 +396,14 @@ $name = request()->route('name');
 
                                         $mandubBook = $book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first();
 <<<<<<< HEAD
+                                        $station = optional($book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first())->pivot->station ?? 0;
+=======
+<<<<<<< HEAD
                                         $station = $mandub_target - $mandubQuantity;
 =======
                                         $station = optional($book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first())->pivot->station ?? 0;
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                         $backgroundClass = $station < 2 ? 'bg-success' : 'bg-danger' ; @endphp <span class="{{ $backgroundClass }}" style="padding: 8px; border-radius: 3px; color: #fff;">
                                             {{ $station }}
                                     </th>
@@ -386,6 +412,8 @@ $name = request()->route('name');
 
                                         $mandubBook = $book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first();
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
                                         $mandub_active = optional($book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first())->pivot->mandub_active ?? "✓";
                                         $backgroundClass = $mandub_active == 1 ? 'bg-success' : 'bg-danger' ; @endphp <span class="{{ $backgroundClass }}" style="padding: 8px; border-radius: 3px; color: #fff;">
                                             @if($mandub_active == 0)
@@ -393,6 +421,7 @@ $name = request()->route('name');
                                             @else
                                             ✓
 =======
+>>>>>>> origin/main
                                         $distributor_active = optional($book->mandubBooks->where('pivot.mandub_id', $mandub->id)->first())->pivot->distributor_active ?? "✗";
                                         $backgroundClass = $distributor_active == 1 ? 'bg-success' : 'bg-danger' ; @endphp <span class="{{ $backgroundClass }}" style="padding: 8px; border-radius: 3px; color: #fff;">
                                             @if($distributor_active == 0)
@@ -411,7 +440,10 @@ $name = request()->route('name');
                                             <a href="{{route('updateMandubActive',[$book->id,$mandub->id])}}"> ✓ </a>
                                             @else
                                             ✗
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                             @endif
                                     </th>
                                     <td>
@@ -598,5 +630,9 @@ $name = request()->route('name');
 <<<<<<< HEAD
     @endsection
 =======
+<<<<<<< HEAD
+    @endsection
+=======
     @endsection
 >>>>>>> origin/islam
+>>>>>>> origin/main

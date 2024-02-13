@@ -49,17 +49,23 @@ class TeacherPaymentsController extends Controller
             if ($packageId) {
                 $package = AnotherPackage::find($packageId);
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     
                 if ($package) {
                     // التحقق من أن الكتب في الحزمة تعود لنفس المدرس
                     $booksInPackage = $package->book()->where('techer_id', $authenticatedTeacher->id)->get();
     
 =======
+>>>>>>> origin/main
                 if ($package) {
                     // التحقق من أن الكتب في الحزمة تعود لنفس المدرس
                     $booksInPackage = $package->book()->where('techer_id', $authenticatedTeacher->id)->get();
 
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                     if ($booksInPackage->count() > 0) {
                         // أضف الحزمة إلى الجدول إذا كانت تحتوي على كتب للمدرس
                         $packages[] = $booksInPackage;
@@ -69,10 +75,15 @@ class TeacherPaymentsController extends Controller
         }
     
 <<<<<<< HEAD
+        return view('teacher.books_earn', compact('teacherbooks', 'packages'));
+    }
+=======
+<<<<<<< HEAD
         return view('teacher.books_earn', compact('teacherbooks', 'packages'));    }
 =======
         return view('teacher.books_earn', compact('teacherbooks', 'packages'));
     }
 >>>>>>> origin/islam
+>>>>>>> origin/main
     
 }

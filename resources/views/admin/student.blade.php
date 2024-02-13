@@ -2,15 +2,21 @@
 @section('css')
 @section('title')
 <<<<<<< HEAD
+الطلبة
+=======
+<<<<<<< HEAD
     الطلبة
 =======
 الطلبة
 >>>>>>> origin/islam
+>>>>>>> origin/main
 @stop
 @endsection
 @section('page-header')
 <div class="row">
     <div>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
         <h2 style="position: absolute; left:10%; top:13%; color:#dc3545"> اجمالي عدد الطلبة ({{ $studentCount }})</h2>
     </div>
@@ -24,6 +30,7 @@
         <div class="col-sm-12"
             style="color:#dc3545 ;text-align:center; background-color: #dc3545; margin-bottom: 10px; border-radius:7px;">
 =======
+>>>>>>> origin/main
         <h2 style="position: absolute; left:10%; top:5%; color:#dc3545"> الاجمالي ({{ $studentCount }})</h2>
         <h3 style="position: absolute; left:11%; top:8%;  "> مشترك ({{ $totalSub }})</h3>
     </div>
@@ -33,7 +40,10 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-12" style="color:#dc3545 ;text-align:center; background-color: #dc3545; margin-bottom: 10px; border-radius:7px;">
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
             <h2 class="mb-0" style="color:#fff ;text-align:center; padding-top: 10px; padding-bottom: 10px; "> الطلبة
             </h2>
         </div>
@@ -47,6 +57,8 @@
 <!-- row -->
 @if ($errors->any())
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -55,6 +67,7 @@
         </ul>
     </div>
 =======
+>>>>>>> origin/main
 <div class="alert alert-danger">
     <ul>
         @foreach ($errors->all() as $error)
@@ -62,7 +75,10 @@
         @endforeach
     </ul>
 </div>
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
 @endif
 <div class="row">
     <div class="col-md-12 mb-30">
@@ -84,6 +100,8 @@
                         </thead>
                         <tbody>
                             @foreach ($students as $student)
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
                                 <tr>
                                     <td>{{ $student->name }}</td>
@@ -114,6 +132,7 @@
                                             </div>
                                             <!-- <div style="padding:2px; padding-right: 20px; font-size: 15px;">
 =======
+>>>>>>> origin/main
                             <tr>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->group }}</td>
@@ -142,7 +161,10 @@
                                             تعديل البيانات
                                         </div>
                                         <!-- <div style="padding:2px; padding-right: 20px; font-size: 15px;">
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                     data-target="#editGroup{{ $student->id }}">
                                                     <i class="fa fa-edit"></i>
@@ -150,15 +172,21 @@
                                                 تعديل الصف
                                             </div> -->
 <<<<<<< HEAD
+                                        <!-- <div style="padding:2px; padding-right: 20px; font-size: 15px;">
+=======
+<<<<<<< HEAD
                                             <!-- <div style="padding:2px; padding-right: 20px; font-size: 15px;">
 =======
                                         <!-- <div style="padding:2px; padding-right: 20px; font-size: 15px;">
 >>>>>>> origin/islam
+>>>>>>> origin/main
                                   <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit{{ $student->id }}">
                             <i class="fa fa-edit"></i>
                           </button>
                           تعديل البيانات
                     </div> -->
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
                                             <!-- <a href="#" class="dropdown-item">New invoice received <small
                 class="float-right text-muted time">22 mins</small> </a> -->
@@ -314,6 +342,7 @@
                                         <!-- Button trigger modal show -->
                                         <!-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#show">
 =======
+>>>>>>> origin/main
                                         <!-- <a href="#" class="dropdown-item">New invoice received <small
                 class="float-right text-muted time">22 mins</small> </a> -->
                                     </div>
@@ -453,11 +482,19 @@
                                     </div>
                                     <!-- Button trigger modal show -->
                                     <!-- <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#show">
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
                           <i class="fa fa-eye"></i>
                           </button>
                  -->
 
+<<<<<<< HEAD
+                                </td>
+
+                            </tr>
+=======
 <<<<<<< HEAD
                                     </td>
 
@@ -467,6 +504,7 @@
 
                             </tr>
 >>>>>>> origin/islam
+>>>>>>> origin/main
                             @endforeach
 
 
@@ -488,5 +526,9 @@
 <<<<<<< HEAD
 @endsection
 =======
+<<<<<<< HEAD
+@endsection
+=======
 @endsection
 >>>>>>> origin/islam
+>>>>>>> origin/main

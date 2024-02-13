@@ -72,8 +72,11 @@ class CourseController extends Controller
         return view('admin.course.tutorial', (compact('tutorials')))->with('course', $course);
     }
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
 =======
+>>>>>>> origin/main
     public function updateTutorialOrder(Request $request)
     {
         if (Auth::user()->user_type != 'user') {
@@ -86,7 +89,10 @@ class CourseController extends Controller
         }
         return response()->json(['success' => false]);
     }
+<<<<<<< HEAD
+=======
 >>>>>>> origin/islam
+>>>>>>> origin/main
     public function createTutorial(Request $request, $courseId)
     {
         $requests = $request->validate([
@@ -139,6 +145,8 @@ class CourseController extends Controller
         return response()->json(['success' => false]);
     }
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
     public function updateTutorialOrder(Request $request)
     {
@@ -154,6 +162,7 @@ class CourseController extends Controller
     }
 =======
 >>>>>>> origin/islam
+>>>>>>> origin/main
     public function createVideo(Request $request, $tutorialId)
     {
         $request->validate([

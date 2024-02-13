@@ -51,6 +51,8 @@
                     style=" border-radius: 10px;">
             </div>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
             @if (Auth()->user()->user_type == 'user')
             <div class="col-xl-6 col-lg-6 col-md-6 mb-30">
                 <label style="color:#fff; font-size: 25px; margin-right: 10px;">الصف</label>
@@ -62,16 +64,21 @@
             {{-- @else
 =======
 >>>>>>> origin/islam
+>>>>>>> origin/main
             <div class="col-xl-6 col-lg-6 col-md-6 mb-30">
                 <label style="color:#fff; font-size: 25px; margin-right: 10px;">الايميل</label>
                 <input type="email" name="email" class="form-control" value="{{ Auth()->user()->email }}"
                     style=" border-radius: 10px;">
+<<<<<<< HEAD
+            </div>
+=======
 <<<<<<< HEAD
             </div> --}}
             @endif
 =======
             </div>
 >>>>>>> origin/islam
+>>>>>>> origin/main
             <div class="col-xl-6 col-lg-6 col-md-6 mb-30">
                 <label style="color:#fff; font-size: 25px; margin-right: 10px;">الرقم السري</label>
                 <input type="text" name="password" class="form-control" value="{{ Auth()->user()->user_password }}"
