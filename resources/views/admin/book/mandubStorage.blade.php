@@ -196,6 +196,7 @@ $name = request()->route('name');
             </div>
             <form action="{{route('finishStation')}}" method="post">
                 @csrf
+                <input name="mandub_id" type="hidden" value="{{ $mandub->id }}">
                 <div class="modal-body">
                     <div class="row justify-content-between">
                         <div class="col">

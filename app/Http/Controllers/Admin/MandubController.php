@@ -226,24 +226,24 @@ class MandubController extends Controller
         foreach($request->book as $book){
             if(isset($book['station_status'])){
                 if($book['station_status'] == 1){
-                    $books = MandubBook::where('book_id', $book['id'])->first();
+                    $mandub_books = MandubBook::where('book_id', $book['id'])->where('mandub_id', $request->mandub_id)->first();
                     if (!$book) {
                         toastr()->success(' يجب اضافة مستهدف لجميع الكتب المحدده');
                         return back();
                     }
-                    if($books->mandub_target - $books->mandub_quantity < $book['station_quantity']) {
-                        toastr()->error('قيمة كمية التوريد يجب أن تكون أقل من أو تساوي ' . $books->mandub_target - $books->mandub_quantity);
+                    if($mandub_books->mandub_target - $mandub_books->mandub_quantity < $book['station_quantity']) {
+                        toastr()->error('قيمة كمية التوريد يجب أن تكون أقل من أو تساوي ' . $mandub_books->mandub_target - $mandub_books->mandub_quantity);
+
                         return back();
                     }
-                    $newquantity = $book['station_quantity'] + $books->mandub_quantity;
-                    $station = max(0, $books->mandub_target - $newquantity);
+                    $newquantity = $book['station_quantity'] + $mandub_books->mandub_quantity;
+                    $station = max(0, $mandub_books->mandub_target - $newquantity);
                     MandubBook::where('book_id', $book['id'])->update([
                         'mandub_quantity' => $newquantity,
                         'station' => $station,
                     ]);
 
-                }
-                $book1 = Book::findOrFail( $book['id']);
+                    $book1 = Book::findOrFail( $book['id']);
 
                 $newQuantityData = $book1->quantity - $book['station_quantity'];
 
@@ -271,6 +271,8 @@ class MandubController extends Controller
                         'quantity' => 0
                     ]);
                 }
+                }
+
             }
             $count++;
 
