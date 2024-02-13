@@ -213,32 +213,7 @@ class MandubController extends Controller
                 ]
             );
 
-            $newQuantityData = $book->quantity - $stationValue;
 
-            if ($newQuantityData > 0) {
-                $book->update([
-                    'quantity' => $newQuantityData
-                ]);
-            } elseif ($newQuantityData <= 0) {
-                $book_target = TargetBook::where('book_id', $book->id)->first();
-
-                if ($book_target) {
-                    $book_target->update([
-                        'print' =>  - $book->quantity  + $stationValue ,
-                        'target' =>  - $book->quantity + $stationValue ,
-                    ]);
-                } else {
-                    TargetBook::create([
-                        'book_id' => $book->id,
-                        'print' => -$book->quantity + $stationValue ,
-                        'target' => -$book->quantity + $stationValue ,
-                    ]);
-                }
-
-                $book->update([
-                    'quantity' => 0
-                ]);
-            }
         }
 
         toastr()->success('تم حفظ البيانات بنجاح');
@@ -266,16 +241,39 @@ class MandubController extends Controller
                         'mandub_quantity' => $newquantity,
                         'station' => $station,
                     ]);
-                    if ($station == 0) {
-                        MandubBook::where('book_id', $book['id'])->update([
-                            'mandub_active' => 1,
-                            'distributor_active' => 1,
+
+                }
+                $book1 = Book::findOrFail( $book['id']);
+
+                $newQuantityData = $book1->quantity - $book['station_quantity'];
+
+                if ($newQuantityData > 0) {
+                    $book1->update([
+                        'quantity' => $newQuantityData
+                    ]);
+                } elseif ($newQuantityData <= 0) {
+                    $book_target = TargetBook::where('book_id', $book->id)->first();
+
+                    if ($book_target) {
+                        $book_target->update([
+                            'print' =>  - $book1->quantity  +  $book['station_quantity'] ,
+                            'target' =>  - $book1->quantity +  $book['station_quantity'] ,
+                        ]);
+                    } else {
+                        TargetBook::create([
+                            'book_id' => $book1->id,
+                            'print' => -$book1->quantity +  $book['station_quantity'] ,
+                            'target' => -$book1->quantity +  $book['station_quantity'] ,
                         ]);
                     }
 
+                    $book1->update([
+                        'quantity' => 0
+                    ]);
                 }
             }
             $count++;
+
         }
         if ($count == 0) {
             toastr()->error('لا يوجد مذكرات');

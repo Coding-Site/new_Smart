@@ -99,8 +99,17 @@ $name = request()->route('name');
                 <form action="{{route('postTarget')}}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد </h5>
-
+                        <div class="row justify-content-between">
+                            <div class="col">
+                                <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد  </h5>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input type="checkbox" id='select-all-book' class="form-check-input">
+                                    اختيار الكل
+                                </label>
+                            </div>
+                       </div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -116,7 +125,7 @@ $name = request()->route('name');
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
                                         <label class="form-check">
-                                            <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input">
+                                            <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input select-book-all">
                                         </label>
                                     </td>
                                     <td>{{ $book->name }}</td>
@@ -158,8 +167,17 @@ $name = request()->route('name');
                 <form action="{{route('postQuantityClassroom')}}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد </h5>
-
+                        <div class="row justify-content-between">
+                            <div class="col">
+                                <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد  </h5>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input type="checkbox" id='select-all' class="form-check-input">
+                                    اختيار الكل
+                                </label>
+                            </div>
+                       </div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -175,7 +193,7 @@ $name = request()->route('name');
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
                                         <label class="form-check">
-                                            <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input">
+                                            <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input select-book">
                                         </label>
                                     </td>
                                     <td>{{ $book->name }}</td>
@@ -217,7 +235,17 @@ $name = request()->route('name');
                 <form action="{{route('finishPrint')}}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد </h5>
+                        <div class="row justify-content-between">
+                            <div class="col">
+                                <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد  </h5>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input type="checkbox" id='select-all-print' class="form-check-input">
+                                    اختيار الكل
+                                </label>
+                            </div>
+                       </div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -238,7 +266,7 @@ $name = request()->route('name');
                                     <td>
 
                                         <label class="form-check">
-                                            <input type="checkbox" name="book[{{ $i }}][selected_subjects]"  value="1" class="form-check-input">
+                                            <input type="checkbox" name="book[{{ $i }}][selected_subjects]"  value="1" class="form-check-input select-print">
                                         </label>
                                     </td>
                                     <td>{{ $book->name }}</td>
@@ -274,6 +302,47 @@ $name = request()->route('name');
 
                 </form>
                 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+                <script>
+                    $(document).ready(function() {
+                       $("#select-all").on('click', function() {
+                           $(".select-book").each(function(){
+                                if($("#select-all").prop('checked')){
+                                    $(this).prop('checked', true);
+                                }else{
+                                    $(this).prop('checked', false);
+                                }
+                           });
+                       })
+                       $("#select-all-book").on('click', function() {
+                           $(".select-book-all").each(function(){
+                                if($("#select-all-book").prop('checked')){
+                                    $(this).prop('checked', true);
+                                }else{
+                                    $(this).prop('checked', false);
+                                }
+                           });
+                       })
+                       $("#select-all").on('click', function() {
+                           $(".select-book").each(function(){
+                                if($("#select-all").prop('checked')){
+                                    $(this).prop('checked', true);
+                                }else{
+                                    $(this).prop('checked', false);
+                                }
+                           });
+                       })
+                       $("#select-all-print").on('click', function() {
+                           $(".select-print").each(function(){
+                                if($("#select-all-print").prop('checked')){
+                                    $(this).prop('checked', true);
+                                }else{
+                                    $(this).prop('checked', false);
+                                }
+                           });
+                       })
+                    });
+                </script>
 <script>
     function updatePrintQuantity(input) {
         var bookId = input.id.replace('inputPrintQuantity_', '');

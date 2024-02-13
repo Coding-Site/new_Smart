@@ -116,7 +116,17 @@ $name = request()->route('name');
                 <form action="{{route('postStation' ,$mandub->id)}}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد </h5>
+                       <div class="row justify-content-between">
+                            <div class="col">
+                                <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد </h5>
+                            </div>
+                            <div class="col">
+                                <label class="form-check">
+                                    <input type="checkbox" id='select-all' class="form-check-input">
+                                    اختيار الكل
+                                </label>
+                            </div>
+                       </div>
 
                         <table class="table">
                             <thead>
@@ -135,7 +145,7 @@ $name = request()->route('name');
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>
                                         <label class="form-check">
-                                            <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input">
+                                            <input type="checkbox" name="selected_subjects[]" value="{{ $book->id }}" class="form-check-input select-book">
                                         </label>
                                     </td>
                                     <td>{{ $book->name }}</td>
@@ -179,7 +189,7 @@ $name = request()->route('name');
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">التوريد</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> التوريد </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -187,8 +197,18 @@ $name = request()->route('name');
             <form action="{{route('finishStation')}}" method="post">
                 @csrf
                 <div class="modal-body">
-                    <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد </h5>
-                    <table class="table">
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <h5 class="modal-title" id="exampleModalLabel"> اختر من هذه المواد  </h5>
+                        </div>
+                        <div class="col">
+                            <label class="form-check">
+                                <input type="checkbox" id='select-all-station' class="form-check-input">
+                                اختيار الكل
+                            </label>
+                        </div>
+                   </div>
+                   <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -208,7 +228,7 @@ $name = request()->route('name');
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>
                                     <label class="form-check">
-                                        <input type="checkbox" name="book[{{ $i }}][station_status]" value="1" class="form-check-input">
+                                        <input type="checkbox" name="book[{{ $i }}][station_status]" value="1" class="form-check-input select-station">
                                     </label>
                                 </td>
                                 <td>{{ $book->name }}</td>
@@ -249,6 +269,28 @@ $name = request()->route('name');
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+       $("#select-all").on('click', function() {
+           $(".select-book").each(function(){
+                if($("#select-all").prop('checked')){
+                    $(this).prop('checked', true);
+                }else{
+                    $(this).prop('checked', false);
+                }
+           });
+       })
+       $("#select-all-station").on('click', function() {
+           $(".select-station").each(function(){
+                if($("#select-all-station").prop('checked')){
+                    $(this).prop('checked', true);
+                }else{
+                    $(this).prop('checked', false);
+                }
+           });
+       })
+    });
+</script>
 <script>
     function updateStationQuantity(input) {
         var newStationQuantity = input.value;
