@@ -20,6 +20,7 @@ class BooksController extends Controller
         $bookeleven=book::where('classroom','الصف الحادي عشر')->get();
         $booktwelve=book::where('classroom','الصف الثاني عشر')->get();
         //package 
+<<<<<<< HEAD
         $packagefour = AnotherPackage::with('book')->whereHas('book')->where('class', 'الصف الرابع')->get();
 $packagefive = AnotherPackage::with('book')->whereHas('book')->where('class', 'الصف الخامس')->get();
 $packagesix = AnotherPackage::with('book')->whereHas('book')->where('class', 'الصف السادس')->get();
@@ -30,6 +31,17 @@ $packageten = AnotherPackage::with('book')->whereHas('book')->where('class', 'ا
 $packageeleven = AnotherPackage::with('book')->whereHas('book')->where('class', 'الصف الحادي عشر')->get();
 $packagetwelve = AnotherPackage::with('book')->whereHas('book')->where('class', 'الصف الثاني عشر')->get();
 
+=======
+        $packagefour=AnotherPackage::where('class','الصف الرابع')->with('book')->get();
+        $packagefive=AnotherPackage::where('class','الصف الخامس')->with('book')->get();
+        $packagesix=AnotherPackage::where('class','الصف السادس')->with('book')->get();
+        $packageseven=AnotherPackage::where('class','الصف السابع')->with('book')->get();
+        $packageeight=AnotherPackage::where('class','الصف الثامن')->with('book')->get();
+        $packagenine=AnotherPackage::where('class','الصف التاسع')->with('book')->get();
+        $packageten=AnotherPackage::where('class','الصف العاشر')->with('book')->get();
+        $packageeleven=AnotherPackage::where('class','الصف الحادي عشر')->with('book')->get();
+        $packagetwelve=AnotherPackage::where('class','الصف الثاني عشر')->with('book')->get();
+>>>>>>> origin/main
         return response()->json([
             'status'=>200,
             'bookfour'=> $bookfour,

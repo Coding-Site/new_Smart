@@ -86,18 +86,42 @@
                     <table id="datatable" class="table table-striped table-bordered p-0" style="text-align:center">
                         <thead>
                             <tr>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                                <th>#</th>
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
                                 <th>الوحدة  </th>
                                 @if (Auth::user()->user_type !== 'user')
                                     <th>العمليات</th>
                                 @endif
                             </tr>
                         </thead>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                        <tbody  class="sortable">
+                            @foreach ($tutorials as $i => $tutorial)
+                                <tr id="{{ $tutorial->id }}">
+                                    <td>{{ $tutorial->order }}</td>
+                                    <td><a style="font-weight: bold;font-size: 16px"
+                                            href="{{ route('showTutorialVideo', $tutorial->id) }}">{{ $tutorial->name }}</a>
+                                    </td>
+
+=======
+>>>>>>> origin/main
                         <tbody>
                             @foreach ($tutorials as $tutorial)
                                 <tr>
                                     <td><a style="font-weight: bold;font-size: 16px"
                                             href="{{ route('showTutorialVideo', $tutorial->id) }}">{{ $tutorial->name }}</a>
                                     </td>
+<<<<<<< HEAD
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
                                     @if (Auth::user()->user_type !== 'user')
                                         <td>
                                             <!-- Button trigger modal update -->
@@ -186,10 +210,64 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<!-- row closed -->
+@endsection
+<!-- Add this to include the sortable.js library -->
+
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize the sortable table
+        var sortableTable = new Sortable(document.querySelector('.sortable'), {
+            animation: 150,
+            ghostClass: 'bg-light',
+        });
+
+        // Listen for the sortable's onEnd event and update the order
+        sortableTable.options.onEnd = function (evt) {
+            updateRowOrder(evt);
+        };
+
+        // Function to update the row order after dragging
+        function updateRowOrder(evt) {
+
+            var rows = document.querySelectorAll('.sortable tr');
+            var newOrder = [];
+            // Get the new order of row IDs
+            rows.forEach(function (row) {
+                newOrder.push(row.id.replace('row-', ''));
+            });
+            console.log(newOrder);
+
+            // Send an AJAX request to the server with the updated order
+            fetch('{{ asset('/dashboard/updateTutorialOrder') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({ order: newOrder }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+=======
+>>>>>>> origin/main
 
 
 <!-- row closed -->
 @endsection
 @section('js')
 
+<<<<<<< HEAD
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
 @endsection

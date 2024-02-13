@@ -113,7 +113,15 @@
         <div class="card card-statistics h-100">
             <div class="card-body">
                 <div class="table-responsive">
+<<<<<<< HEAD
                     <table id="datatable" class="table table-striped table-bordered p-0" style="text-align:center">
+=======
+<<<<<<< HEAD
+                    <table  class="table table-striped table-bordered p-0" style="text-align:center">
+=======
+                    <table id="datatable" class="table table-striped table-bordered p-0" style="text-align:center">
+>>>>>>> origin/islam
+>>>>>>> origin/main
                         <thead>
                             <tr>
                                 <th> الترتيب</th>
@@ -125,7 +133,15 @@
                             </tr>
                         </thead>
                         <tbody  class="sortable">
+<<<<<<< HEAD
                             @foreach ($tutorial as $video)
+=======
+<<<<<<< HEAD
+                             @foreach ($tutorial as $video)
+=======
+                            @foreach ($tutorial as $video)
+>>>>>>> origin/islam
+>>>>>>> origin/main
                             @php
                             $isUserSub = false;
                             foreach ($courses as $sub) {
@@ -135,7 +151,15 @@
                                     if($tut_item->id == $video->tutorial_id){
                             $isUserSub = true;
                             break;
+<<<<<<< HEAD
                             }
+=======
+<<<<<<< HEAD
+                                    }
+=======
+                            }
+>>>>>>> origin/islam
+>>>>>>> origin/main
                             }
                             }
                         }
@@ -221,6 +245,13 @@
                                                         <button type="submit" class="btn btn-primary"> تعديل </button>
                                                     </div>
                                                 </form>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
                                             </div>
                                         </div>
                                     </div>
@@ -299,7 +330,15 @@
             console.log(newOrder);
 
             // Send an AJAX request to the server with the updated order
+<<<<<<< HEAD
             fetch('{{ route('updateVideoOrder') }}', {
+=======
+<<<<<<< HEAD
+            fetch('{{ asset('/dashboard/updateVideoOrder')}}', {
+=======
+            fetch('{{ route('updateVideoOrder') }}', {
+>>>>>>> origin/islam
+>>>>>>> origin/main
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

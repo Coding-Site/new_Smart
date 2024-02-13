@@ -12,6 +12,13 @@
         style="width:92%; height:180px;  display: block; margin:15px auto; margin-top:0px; object-fit: fill; border-radius: 5px;"
         alt="">
 </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
 <div class="page-title">
     <div class="row">
         <div class="col-sm-12"
@@ -28,6 +35,14 @@
     </div>
 
 </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
 <!-- breadcrumb -->
 @endsection
 @section('content')
@@ -81,13 +96,33 @@
                     <table id="datatable" class="table table-striped table-bordered p-0" style="text-align:center">
                         <thead>
                             <tr>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                                <td>#</td>
+=======
+>>>>>>> origin/islam
+>>>>>>> origin/main
                                 <th>عنوان الحلقة</th>
                                 <th>العمليات</th>
                             </tr>
                         </thead>
+<<<<<<< HEAD
                         <tbody>
                             @foreach ($tutorials as $tutorial)
                                 <tr>
+=======
+<<<<<<< HEAD
+                        <tbody class="sortable">
+                            @foreach ($tutorials as $tutorial)
+                                <tr id="{{ $tutorial->id }}">
+                                    <td>{{ $tutorial->order }}</td>
+=======
+                        <tbody>
+                            @foreach ($tutorials as $tutorial)
+                                <tr>
+>>>>>>> origin/islam
+>>>>>>> origin/main
                                     <td><a
                                             href="{{ route('showTutorialVideo', $tutorial->id) }}">{{ $tutorial->name }}</a>
                                     </td>
@@ -177,5 +212,52 @@
 <!-- row closed -->
 @endsection
 @section('js')
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize the sortable table
+        var sortableTable = new Sortable(document.querySelector('.sortable'), {
+            animation: 150,
+            ghostClass: 'bg-light',
+        });
+
+        // Listen for the sortable's onEnd event and update the order
+        sortableTable.options.onEnd = function (evt) {
+            updateRowOrder(evt);
+        };
+
+        // Function to update the row order after dragging
+        function updateRowOrder(evt) {
+
+            var rows = document.querySelectorAll('.sortable tr');
+            var newOrder = [];
+            // Get the new order of row IDs
+            rows.forEach(function (row) {
+                newOrder.push(row.id.replace('row-', ''));
+            });
+            console.log(newOrder);
+
+            // Send an AJAX request to the server with the updated order
+            fetch('{{ asset('/dashboard/updateTutorialOrder') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({ order: newOrder }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+=======
+
+>>>>>>> origin/islam
+>>>>>>> origin/main
 @endsection
