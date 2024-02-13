@@ -71,7 +71,22 @@ class CourseController extends Controller
         $tutorials = Tutorial::where('course_id', $courseId)->orderBy('order', 'desc')->get();
         return view('admin.course.tutorial', (compact('tutorials')))->with('course', $course);
     }
+<<<<<<< HEAD
 
+=======
+    public function updateTutorialOrder(Request $request)
+    {
+        if (Auth::user()->user_type != 'user') {
+            // Update the order of tutorials in the database based on $order
+            foreach ($request->input('order') as $index => $tutorialId) {
+                Tutorial::whereId($tutorialId)->update(['order' => ++$index]);
+            }
+
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false]);
+    }
+>>>>>>> origin/islam
     public function createTutorial(Request $request, $courseId)
     {
         $requests = $request->validate([
@@ -123,6 +138,7 @@ class CourseController extends Controller
         }
         return response()->json(['success' => false]);
     }
+<<<<<<< HEAD
 
     public function updateTutorialOrder(Request $request)
     {
@@ -136,6 +152,8 @@ class CourseController extends Controller
         }
         return response()->json(['success' => false]);
     }
+=======
+>>>>>>> origin/islam
     public function createVideo(Request $request, $tutorialId)
     {
         $request->validate([

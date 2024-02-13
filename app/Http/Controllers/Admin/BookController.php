@@ -115,7 +115,11 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $data = Book::findOrFail($id);
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> origin/islam
         if ($request->file('pdf')) {
             Storage::delete('public/pdf/books/' . $data->pdf);
             $file = $request->pdf;
@@ -212,34 +216,62 @@ class BookController extends Controller
     public function editPackage(Request $request, $packageId)
     {
         $package = AnotherPackage::find($packageId);
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/islam
         if (!$package) {
             toastr()->error('الصف لا يحتوي على مذكرات');
             return redirect()->route('showPackage');
         }
+<<<<<<< HEAD
 
         $books = Book::where('classroom', $package->class)->get();
         $packagebooks = PackageBook::where("package_id", $package->id)->get();
 
+=======
+    
+        $books = Book::where('classroom', $package->class)->get();
+        $packagebooks = PackageBook::where("package_id", $package->id)->get();
+    
+>>>>>>> origin/islam
         if ($packagebooks->isEmpty()) {
             toastr()->error('الباقة لا تحتوي على مذكرات');
             return redirect()->route('showPackage');
         }
+<<<<<<< HEAD
 
         $selectedBooks = [];
 
         foreach ($packagebooks as $packagebookItem) {
             $book = Book::find($packagebookItem->book_id);
 
+=======
+    
+        $selectedBooks = [];
+    
+        foreach ($packagebooks as $packagebookItem) {
+            $book = Book::find($packagebookItem->book_id);
+    
+>>>>>>> origin/islam
             if ($book) {
                 $selectedBooks[] = $book;
             }
         }
+<<<<<<< HEAD
 
         return view("admin.book.addpackage", compact(['books', 'package', 'selectedBooks']));
     }
 
 
+=======
+    
+        return view("admin.book.addpackage", compact(['books', 'package', 'selectedBooks']));
+    }
+    
+    
+>>>>>>> origin/islam
 
     public function unActive()
     {
@@ -304,6 +336,7 @@ class BookController extends Controller
     }
     public function finishPrint(Request $request)
     {
+<<<<<<< HEAD
         $count = 0;
         foreach($request->book as $book){
             if(isset($book['selected_subjects'])){
@@ -326,6 +359,26 @@ class BookController extends Controller
             toastr()->error('لا يوجد مذكرات');
             return back();
         }
+=======
+        $selectedBooks = $request->input('selected_subjects');
+        if (!$selectedBooks) {
+            toastr()->error('لا يوجد مذكرات');
+            return back();
+        }
+        foreach ($selectedBooks as $bookId) {
+            $book = Book::find($bookId);
+            if ($book) {
+                $newquantity = $book->target->print + $book->quantity;
+                TargetBook::where('book_id', $bookId)->first()->update(['print' =>$book->target->target-$newquantity ]);
+
+                $book->update(
+                    [
+                        'quantity' => $newquantity,
+                    ]
+                );
+            }
+        }
+>>>>>>> origin/islam
         toastr()->success('تم حفظ البيانات بنجاح');
         return back();
     }
@@ -350,7 +403,11 @@ public function deleteBookFromStore(int $book)
 {
     try {
         $bookModel = Book::findOrFail($book);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/islam
         // Attempt to delete the book
         $bookModel->delete();
 
@@ -383,7 +440,10 @@ public function updatePrintQuantity(Request $request, $book)
     try {
         $printQuantity = $request->print_quantity;
 
+<<<<<<< HEAD
         $book1 = Book::find($book);
+=======
+>>>>>>> origin/islam
         // التأكد من أن الكتاب المستهدف موجود
         $book = TargetBook::where('book_id', $book)->first();
 
@@ -392,12 +452,20 @@ public function updatePrintQuantity(Request $request, $book)
         }
 
         // التحقق من أن قيمة كمية الطباعة المحددة أقل من أو تساوي target
+<<<<<<< HEAD
         if ($printQuantity <= $book->target - $book1->quantity) {
+=======
+        if ($printQuantity <= $book->target) {
+>>>>>>> origin/islam
             // قم بتحديث قاعدة البيانات فقط إذا كانت القيمة المحددة تلبي الشرط
             $book->update(['print' => $printQuantity]);
             return response()->json(['message' => 'تم تحديث كمية الطباعة بنجاح.']);
         } else {
+<<<<<<< HEAD
             return response()->json(['message' => 'قيمة كمية الطباعة يجب أن تكون أقل من أو تساوي ' . $book->target  - $book1->quantity], 400);
+=======
+            return response()->json(['message' => 'قيمة كمية الطباعة يجب أن تكون أقل من أو تساوي ' . $book->target], 400);
+>>>>>>> origin/islam
         }
     } catch (\Exception $e) {
         return response()->json(['message' => 'حدث خطأ أثناء تحديث كمية الطباعة.'], 500);
@@ -407,4 +475,8 @@ public function updatePrintQuantity(Request $request, $book)
 
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/islam

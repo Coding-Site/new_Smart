@@ -12,7 +12,10 @@
         style="width:92%; height:180px;  display: block; margin:15px auto; margin-top:0px; object-fit: fill; border-radius: 5px;"
         alt="">
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/islam
 <div class="page-title">
     <div class="row">
         <div class="col-sm-12"
@@ -29,8 +32,11 @@
     </div>
 
 </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/islam
 <!-- breadcrumb -->
 @endsection
 @section('content')
@@ -84,15 +90,24 @@
                     <table id="datatable" class="table table-striped table-bordered p-0" style="text-align:center">
                         <thead>
                             <tr>
+<<<<<<< HEAD
                                 <td>#</td>
+=======
+>>>>>>> origin/islam
                                 <th>عنوان الحلقة</th>
                                 <th>العمليات</th>
                             </tr>
                         </thead>
+<<<<<<< HEAD
                         <tbody class="sortable">
                             @foreach ($tutorials as $tutorial)
                                 <tr id="{{ $tutorial->id }}">
                                     <td>{{ $tutorial->order }}</td>
+=======
+                        <tbody>
+                            @foreach ($tutorials as $tutorial)
+                                <tr>
+>>>>>>> origin/islam
                                     <td><a
                                             href="{{ route('showTutorialVideo', $tutorial->id) }}">{{ $tutorial->name }}</a>
                                     </td>
@@ -182,6 +197,7 @@
 <!-- row closed -->
 @endsection
 @section('js')
+<<<<<<< HEAD
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -222,4 +238,7 @@
         }
     });
 </script>
+=======
+
+>>>>>>> origin/islam
 @endsection

@@ -86,13 +86,17 @@
                     <table id="datatable" class="table table-striped table-bordered p-0" style="text-align:center">
                         <thead>
                             <tr>
+<<<<<<< HEAD
                                 <th>#</th>
+=======
+>>>>>>> origin/islam
                                 <th>الوحدة  </th>
                                 @if (Auth::user()->user_type !== 'user')
                                     <th>العمليات</th>
                                 @endif
                             </tr>
                         </thead>
+<<<<<<< HEAD
                         <tbody  class="sortable">
                             @foreach ($tutorials as $i => $tutorial)
                                 <tr id="{{ $tutorial->id }}">
@@ -101,6 +105,14 @@
                                             href="{{ route('showTutorialVideo', $tutorial->id) }}">{{ $tutorial->name }}</a>
                                     </td>
 
+=======
+                        <tbody>
+                            @foreach ($tutorials as $tutorial)
+                                <tr>
+                                    <td><a style="font-weight: bold;font-size: 16px"
+                                            href="{{ route('showTutorialVideo', $tutorial->id) }}">{{ $tutorial->name }}</a>
+                                    </td>
+>>>>>>> origin/islam
                                     @if (Auth::user()->user_type !== 'user')
                                         <td>
                                             <!-- Button trigger modal update -->
@@ -189,6 +201,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <!-- row closed -->
 @endsection
 <!-- Add this to include the sortable.js library -->
@@ -234,4 +247,12 @@
         }
     });
 </script>
+=======
+
+
+<!-- row closed -->
+@endsection
+@section('js')
+
+>>>>>>> origin/islam
 @endsection

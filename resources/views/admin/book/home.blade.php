@@ -121,7 +121,10 @@
                         </div>
                     </div>
                 </a>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/islam
                 <a class="col-xl-3 col-lg-6 col-md-6 mb-30" href="{{route('getOrderFinished')}}">
                     <div class="card card-statistics h-100">
                         <div class="card-body">
