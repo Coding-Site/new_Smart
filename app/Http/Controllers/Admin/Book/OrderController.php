@@ -133,5 +133,70 @@ public function orderfinished()
     $orders = OrderBookDetail::where('status', 'finish')->get();
     return view('admin/book/orders/endedOrder', compact('orders'));
 }
+public function orderFinishedAnalysis($level){
+    switch($level){
+        case "four":
+            $books = Book::where('classroom','الصف الرابع')->with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف الرابع');
+            // })->get();
+            break;
+        case "five":
+            $books = Book::where('classroom','الصف الخامس')->with(['ordersItem','ordersItem.order','techer'])->get();
+
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف الخامس');
+            // });
+            break;
+        case "six":
+            $books = Book::where('classroom','الصف السادس')->with(['ordersItem','ordersItem.order','techer'])->get();
+
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف السادس');
+            // });
+            break;
+        case "seven":
+            $books = Book::where('classroom','الصف السابع')->with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف السابع');
+            // });
+            break;
+        case "eight":
+            $books = Book::where('classroom','الصف الثامن')->with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف الثامن');
+            // });
+            break;
+        case "nine":
+            $books = Book::where('classroom','الصف التاسع')->with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف التاسع');
+            // });
+            break;
+        case "ten":
+            $books = Book::where('classroom','الصف العاشر')->with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف العاشر');
+            // });
+            break;
+        case "eleven":
+            $books = Book::where('classroom','الصف الحادي عشر')->with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف الحادي عشر');
+            // });
+            break;
+        case "twelve":
+            $books = Book::where('classroom','الصف الثاني عشر')->with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
+            //     $query->where('classroom','الصف الثاني عشر');
+            // });
+            break;
+        default:
+            $books = Book::with(['ordersItem','ordersItem.order','techer'])->get();
+            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->get();
+            break;
+    }
+    return view('admin/book/orders/analysis', compact('books'));
+}
 
 }

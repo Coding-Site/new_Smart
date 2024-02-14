@@ -1,15 +1,18 @@
 @extends('layouts.master')
 @section('css')
 @section('title')
-الطلبيات المحصلة  
+الطلبيات المحصلة
 @stop
 @endsection
 @section('page-header')
 <div class="page-title">
     <div class="row">
-        <div class="col-sm-12" style="color:#dc3545 ;text-align:center; background-color: #dc3545; margin-bottom: 10px; border-radius:7px;">
-            <h1 class="mb-0" style="color:#fff ;text-align:center; padding-top: 15px; padding-bottom: 15px; ">  قائمة الطلبيات المحصلة   
+        <div class="col col-sm-12" style="color:#dc3545 ;text-align:center; background-color: #dc3545; margin-bottom: 10px; border-radius:7px;">
+            <h1 class="mb-0" style="color:#fff ;text-align:center; padding-top: 15px; padding-bottom: 15px; ">  قائمة الطلبيات المحصلة
             </h1>
+        </div>
+        <div class="col">
+            <a href="{{ route('getOrderFinishedAnalysis','all') }}" class="btn btn-success">تقرير البيع</a>
         </div>
     </div>
 </div>
@@ -48,7 +51,7 @@
                                 <td>{{$order->created_at}}</td>
                                 <td>{{$order->buyer}}</td>
                                 <td>{{$order->phone}}</td>
-                               
+
                                 <td>
                                     @php
                                     $city = \App\Models\City::where('id', $order->city_id)->first();

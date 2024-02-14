@@ -31,5 +31,8 @@ class Book extends Model
         ->withPivot('mandub_quantity', 'minimum','station','distributor_active','mandub_active','mandub_target')
         ->withTimestamps();
     }
-    
+    public function ordersItem(){
+        return $this->hasMany(OrderBookItem::class, "book_id");
+    }
+
 }
