@@ -233,7 +233,6 @@ class MandubController extends Controller
                     }
                     if($mandub_books->mandub_target - $mandub_books->mandub_quantity < $book['station_quantity']) {
                         toastr()->error('قيمة كمية التوريد يجب أن تكون أقل من أو تساوي ' . $mandub_books->mandub_target - $mandub_books->mandub_quantity);
-
                         return back();
                     }
                     $newquantity = $book['station_quantity'] + $mandub_books->mandub_quantity;
