@@ -11,6 +11,7 @@ use PDF;
 
 class ExamController extends Controller
 {
+
     public function index()
     {
         $exams = Exam::get();
@@ -88,7 +89,7 @@ class ExamController extends Controller
 
         return response()->download(storage_path('app/public/pdf/' . $fileName));
     }
-    //////       
+    //////
     public function update(Request $request)
     {
         $exam_id = $request->id;
