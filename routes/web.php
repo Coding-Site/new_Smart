@@ -25,6 +25,7 @@ use App\Http\Controllers\MyFatoorahController;
 use App\Http\Controllers\Sitesetteings;
 use App\Http\Controllers\Student\CartController;
 use App\Http\Controllers\Student\SubscriptionController;
+use App\Http\Controllers\Teacher\TeacherExamController;
 use App\Http\Controllers\Teacher\SubjectController;
 use App\Http\Controllers\Teacher\TeacherPaymentsController;
 use App\Http\Controllers\Teacher\TutorialController;
@@ -165,10 +166,10 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::get('/mandub/book/update/distributor/active/{book}/{mandub}', [MandubController::class, 'updateDistributorActive'])->name('updateDistributorActive');
   Route::get('/mandub/book/update/mandub/active/{book}/{mandub}', [MandubController::class, 'updateMandubActive'])->name('updateMandubActive');
   Route::post('/store/station/{mandub}', [MandubController::class, 'createStation'])->name('postStation');
-  
+
     Route::get('/mandubOrderComplete/{mandubId}', [MandubController::class, 'mandubOrderComplete'])->name('mandubOrderComplete');
   Route::get('/ended/all/order/complete/for/mandub/{mandubId}', [MandubController::class, 'endedAllOrderCompleteForMandub'])->name('endedAllOrderCompleteForMandub');
-  
+
   //city->admin->book
   Route::get('/city', [CityController::class, 'index'])->name('getCity');
   Route::post('/city', [CityController::class, 'store'])->name('postCity');
@@ -178,7 +179,7 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::post('/city/mandoub/delete/{mandoub}', [CityController::class, 'mandoubCityDelete'])->name('mandoubCityDelete');
   Route::post('/finish/station/mandub/books', [MandubController::class, 'finishStation'])->name('finishStation');
   Route::post('/update_station_quantity/{bookId}/{mandubId}', [MandubController::class, 'updateStationQuantity'])->name('update_station_quantity');
-  
+
   //package//book
   Route::get('/book/package', [BookController::class, 'allPackage'])->name('getPackage');
   Route::post('package/book/post', [BookController::class, 'create'])->name('postPackageBook');
@@ -197,9 +198,10 @@ route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'dashboard'], fu
   Route::post('/book/delete/current/order/{order}', [OrderController::class, 'deleteCurrentOrderDetails'])->name('deleteCurrentOrderDetails');
   //completed //order
   Route::get('/book/order/completed', [OrderController::class, 'orderCompleted'])->name('getOrderCompleted');
-//finish //order
-Route::get('/book/order/finished', [OrderController::class, 'orderFinished'])->name('getOrderFinished');
-  //secretary->admin
+    //finish //order
+    Route::get('/book/order/finished', [OrderController::class, 'orderFinished'])->name('getOrderFinished');
+    Route::get('/book/order/finished/analysis/{level}', [OrderController::class, 'orderFinishedAnalysis'])->name('getOrderFinishedAnalysis');
+    //secretary->admin
   Route::get('/secretary', [SecretaryController::class, 'index'])->name('getSecretary');
   Route::post('/secretary', [SecretaryController::class, 'store'])->name('postSecretary');
   Route::post('/secretary/edit/{secretary}', [SecretaryController::class, 'update'])->name('updateSecretary');
@@ -213,6 +215,11 @@ route::group(['prefix' => 'dashboard/teacher/'], function () {
   Route::get('payment/history/show/', [TeacherPaymentsController::class, 'getPaymentHistoryTeacher'])->name('getPaymentHistoryTeacher');
   Route::get('payment/course/subscription',[TeacherPaymentsController::class, 'getCourseSubscription'])->name('getCourseSubscription');
   Route::get('payment/book/earn', [TeacherPaymentsController::class, 'getBookEarnTeacher'])->name('getBookEarnTeacher');
+  Route::prefix('exam')->group(function(){
+    Route::get('/',[TeacherExamController::class,'index'])->name('teacherExam');
+    Route::get('/level/{id}',[TeacherExamController::class,'level']);
+
+  });
 });
 route::group(['prefix' => 'dashboard/student/'], function () {
   //student->dashboard
