@@ -137,66 +137,48 @@ public function orderFinishedAnalysis($level){
     switch($level){
         case "four":
             $books = Book::where('classroom','الصف الرابع')->with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف الرابع');
-            // })->get();
+            $level = "للصف الرابع";
+
             break;
         case "five":
             $books = Book::where('classroom','الصف الخامس')->with(['ordersItem','ordersItem.order','techer'])->get();
+            $level = "للصف الخامس";
 
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف الخامس');
-            // });
             break;
         case "six":
             $books = Book::where('classroom','الصف السادس')->with(['ordersItem','ordersItem.order','techer'])->get();
-
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف السادس');
-            // });
+            $level = "للصف السادس";
             break;
         case "seven":
             $books = Book::where('classroom','الصف السابع')->with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف السابع');
-            // });
+            $level = "للصف السابع";
             break;
         case "eight":
             $books = Book::where('classroom','الصف الثامن')->with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف الثامن');
-            // });
+            $level = "للصف الثامن";
             break;
         case "nine":
             $books = Book::where('classroom','الصف التاسع')->with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف التاسع');
-            // });
+            $level = "للصف التاسع";
             break;
         case "ten":
             $books = Book::where('classroom','الصف العاشر')->with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف العاشر');
-            // });
+            $level = "للصف العاشر";
             break;
         case "eleven":
             $books = Book::where('classroom','الصف الحادي عشر')->with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف الحادي عشر');
-            // });
+            $level = "للصف الحادي عشر";
             break;
         case "twelve":
             $books = Book::where('classroom','الصف الثاني عشر')->with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->whereHas('orderItem.book',function($query){
-            //     $query->where('classroom','الصف الثاني عشر');
-            // });
+            $level = "للصف الثاني عشر";
             break;
         default:
             $books = Book::with(['ordersItem','ordersItem.order','techer'])->get();
-            // $orders = OrderBookDetail::where('status', 'finish')->with(['orderItem', 'orderItem.book'])->get();
+            $level = "لكل الصفوف";
             break;
     }
-    return view('admin/book/orders/analysis', compact('books'));
+    return view('admin/book/orders/analysis', compact('books','level'));
 }
 
 }

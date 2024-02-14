@@ -1,10 +1,12 @@
 @extends('layouts.master')
 @section('css')
 @section('title')
-حجم المبيعات
+حجم المبيعات {{ isset($level)?$level:'' }}
 @stop
 @endsection
 @section('page-header')
+
+<link  href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 <style>
     .link9h4 {
         font-size: 25px;
@@ -96,7 +98,7 @@ $name = request()->route('name');
             <div class="card card-statistics h-100">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="datatable" class="table table-striped table-bordered p-0" style="text-align:center">
+                        <table id="datatable1" class="table table-striped table-bordered p-0" style="text-align:center">
                             <thead>
                                 <tr>
                                     <th>اسم المعلم</th>
@@ -104,6 +106,7 @@ $name = request()->route('name');
                                     <th>الصف </th>
                                     <th> الكمية المباعة </th>
                                     <th>ارباح المعلم</th>
+                                    <th>ارباح المنصة</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -114,6 +117,7 @@ $name = request()->route('name');
                                     <td>{{$book->classroom}}</td>
                                     @php
                                         $sum = 0;
+                                        $sum2 = 0;
                                         if ($book->ordersItem != null) {
                                             foreach ($book->ordersItem as $orderItem) {
                                                 if ($orderItem->order != null) {
@@ -133,7 +137,7 @@ $name = request()->route('name');
                                             if($orders != null){
                                                 foreach ($orders as $order) {
                                                     if ($order->orderItem == null) {
-                                                        $sum += $order->orderItem->sum('quantity');
+                                                        $sum2 += $order->orderItem->sum('quantity');
                                                     }
                                                 }
                                             }
@@ -141,7 +145,25 @@ $name = request()->route('name');
 
                                     @endphp
                                     <td>{{$sum}}</td>
-                                    <th>{{ $sum * $book->Teacher_ratio }} دينار</th>
+                                    <th>{{ ($sum + $sum2) * $book->Teacher_ratio }} دينار</th>
+                                    @php
+                                        $book_sum = $sum *($book->book_price - $book->Teacher_ratio);
+                                        $profit_package_for_teacher = 0;
+                                        $total_package_profit = 0;
+                                        if ($package != null) {
+                                            $total_package_profit = $sum2*$package->price;
+                                            $packageBooks = \App\Models\PackageBook::where('package_id',$package_id)->get();
+                                            if ($packageBooks != null) {
+                                                foreach ($packageBooks as$packageBook) {
+                                                        $book = \App\Models\Book::where('id',$packageBook->book_id)->first();
+                                                        $profit_package_for_teacher += $book->Teacher_ratio * $sum2;
+                                                }
+                                            }
+                                        }
+
+                                        $platform_profit = $book_sum + $total_package_profit - $profit_package_for_teacher;
+                                    @endphp
+                                    <th>{{ isset($platform_profit)?$platform_profit:0 }} دينار</th>
 
                                 </tr>
 
@@ -162,5 +184,33 @@ $name = request()->route('name');
     <!-- row closed -->
     @endsection
     @section('js')
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
+    <script>
+    $(document).ready(function() {
+        $('#datatable1').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'print'
+
+            ],
+            "paging": false
+
+        } );
+
+        $(".buttons-print").each(function(){
+            $(this).addClass('btn');
+            $(this).addClass('btn-success');
+            $(this).text('طباعة و تصدير pdf')
+
+        })
+        $("#datatable1_filter").hide()
+    } );
+    </script>
     @endsection
