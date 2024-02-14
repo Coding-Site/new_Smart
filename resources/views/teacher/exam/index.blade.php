@@ -57,19 +57,16 @@
                             <tr>
                                 <th>المادة</th>
                                 <th>الصف</th>
-                                <th>عدد المشتركين</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($courses as $course)
                                 <tr>
                                     <td><a
-                                            href="{{ route('teacherCourseTutorialShow', $course->id) }}">{{ $course->subject_name }}</a>
+                                            href="{{ route('teacherExamLevel', $course->id) }}">{{ $course->subject_name }}</a>
                                     </td>
                                     <td>{{ $course->classroom }}</td>
-                                    <td>
-                                    {{ $course->user()->count()}}
-                                    </td>
+
 
                                 </tr>
                             @endforeach

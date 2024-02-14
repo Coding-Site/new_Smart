@@ -217,7 +217,7 @@ route::group(['prefix' => 'dashboard/teacher/'], function () {
   Route::get('payment/book/earn', [TeacherPaymentsController::class, 'getBookEarnTeacher'])->name('getBookEarnTeacher');
   Route::prefix('exam')->group(function(){
     Route::get('/',[TeacherExamController::class,'index'])->name('teacherExam');
-    Route::get('/level/{id}',[TeacherExamController::class,'level']);
+    Route::get('/level/{id}',[TeacherExamController::class,'level'])->name('teacherExamLevel');
 
   });
 });
