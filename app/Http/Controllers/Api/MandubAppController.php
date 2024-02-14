@@ -225,7 +225,7 @@ class MandubAppController extends Controller
             'address' => $request->address,
             'city_id' => $city,
             'price_all' => $request->price_all,
-            'status' => 'complete',
+            'status' => 'complate',
             'mandub_id' => $mandub
         ]);
         foreach ($items as $item) {
