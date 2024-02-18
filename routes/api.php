@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //course
-Route::get('/courses', [CoursesController::class, 'index']);
+Route::get('/courses/{id?}', [CoursesController::class, 'index']);
 //books
 Route::get('/books', [BooksController::class, 'index']);
 //
@@ -31,6 +31,9 @@ Route::post('/make/order/from/app', [OrderController::class, 'store']);
 Route::get('/cities/for/order', [OrderController::class, 'citiesForOrder']);
 //
 Route::get('/tutorial/{course}', [CoursesController::class, 'tutorial']);
+
+Route::post('/video/addComment', [CoursesController::class, 'addCommentVideo']);
+
 Route::get('/filedownload/{file}', [CoursesController::class, 'download']);
 Route::get('/filedownload/books/{file}', [BooksController::class, 'download']);
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
