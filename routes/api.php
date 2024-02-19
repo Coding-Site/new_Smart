@@ -26,6 +26,8 @@ Route::get('/courses/{id?}', [CoursesController::class, 'index']);
 //books
 Route::get('/books/{packageId?}', [BooksController::class, 'index']);
 //
+Route::get('getBooksAndPackage', [BooksController::class, 'getBooksAndPackage']);
+
 Route::post('/make/order/from/app', [OrderController::class, 'store']);
 //cities
 Route::get('/cities/for/order', [OrderController::class, 'citiesForOrder']);
