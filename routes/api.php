@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 //course
 Route::get('/courses/{id?}', [CoursesController::class, 'index']);
 //books
-Route::get('/books', [BooksController::class, 'index']);
+Route::get('/books/{packageId?}', [BooksController::class, 'index']);
 //
 Route::post('/make/order/from/app', [OrderController::class, 'store']);
 //cities
