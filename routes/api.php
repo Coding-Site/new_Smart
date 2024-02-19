@@ -22,8 +22,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //course
-Route::get('/courses/{id?}', [CoursesController::class, 'index']);
+Route::get('/courses/{id?}', [CoursesController::class, 'index'])->where('id',"6|7|8|9|10|11|12");
 //books
+Route::get('test',function(Request $r){
+return $r;
+});
 Route::get('/books/{packageId?}', [BooksController::class, 'index']);
 //
 Route::get('getBooksAndPackage', [BooksController::class, 'getBooksAndPackage']);
