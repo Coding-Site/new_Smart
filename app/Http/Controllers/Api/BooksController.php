@@ -99,12 +99,12 @@ class BooksController extends Controller
     }
     function getBooksAndPackage(Request $request)
     {
-        // Define validation rules for book_ids and package_ids as array of integers
+        // Define validation rules for book_ids and package_ids as arrays of integers
         $rules = [
-            'book_ids' => 'required|array',
+            'book_ids' => 'nullable|array',
             'book_ids.*' => 'integer|exists:books,id', // Ensure each book ID exists in the books table
-            'package_ids' => 'required|array',
-            'package_ids.*' => 'integer|exists:another_packages,id', // Ensure each package ID exists in the packages table
+            'package_ids' => 'nullable|array',
+            'package_ids.*' => 'integer|exists:another_packages,id', // Ensure each package ID exists in the another_packages table
         ];
 
         // Run the validation
@@ -116,20 +116,27 @@ class BooksController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        // Validation passed, continue with your logic...
-
         // Access validated data
         $validatedData = $validator->validated();
-        $bookIds = $validatedData['book_ids'];
-        $packageIds = $validatedData['package_ids'];
-        return response()->json([
-            'books' => Book::whereIn($bookIds),
 
-            //
-            'package' => AnotherPackage::whereIn($packageIds),
+        // Retrieve books and packages based on validated IDs
+        $books = [];
+        if (isset($validatedData['book_ids'])) {
+            $books = Book::whereIn('id', $validatedData['book_ids'])->get();
+        }
+
+        $packages = [];
+        if (isset($validatedData['package_ids'])) {
+            $packages = AnotherPackage::whereIn('id', $validatedData['package_ids'])->get();
+        }
+
+        // Return JSON response with books and packages
+        return response()->json([
+            'books' => $books,
+            'packages' => $packages,
         ], 200);
-        // Continue with your logic using $bookIds and $packageIds
     }
+
     public function download($fileName)
     {
         return response()->download(storage_path('app/public/pdf/books/' . $fileName));
