@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -15,6 +16,17 @@ class TeacherController extends Controller
             $teacher = User::select('id','name','Teacher_ratio_course','teacher_description')->where('user_type','teacher')->get();
             return response()->json([
                 'teacher' => $teacher,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+    public function courses($id)
+    {
+        try {
+            $courses = Course::where('techer_id',$id)->get();
+            return response()->json([
+                'courses' => $courses,
             ]);
         } catch (\Exception $e) {
             return response()->json($e->getMessage());

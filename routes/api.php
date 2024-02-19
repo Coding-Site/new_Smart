@@ -44,8 +44,10 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
     Route::get('/subscription/{user}', [CoursesController::class, 'userSubscription']);
 });
 //mandub app
+
 Route::group(['middleware' => 'api'], function ($router) {
     Route::prefix('teacher')->group(function () {
+
         Route::get('/index', [TeacherController::class, 'index']);
     });
     Route::get('/mandub/orders/{mandub}', [MandubAppController::class, 'index']);
@@ -67,4 +69,8 @@ Route::group(['middleware' => 'api'], function ($router) {
     Route::Post('/mandub/books/cart/create/current/order/{mandub}/{city}', [MandubAppController::class, 'neworderbook']);
     //
     Route::Post('/mandub/update/quantity/from/book/current/order/{mandub}', [MandubAppController::class, 'updateQuantity']);
+});
+Route::prefix('teacher')->group(function () {
+
+    Route::get('/courses/{id}', [TeacherController::class, 'courses']);
 });
